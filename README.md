@@ -7,10 +7,14 @@ Step 2 — Create the basic topology
 
 Drag these devices into the workspace:
 
-Network devices
+Network devices:
+
 1 router
+
 1 switch
-End devices
+
+End devices:
+
 6 PCs
 
 Router: 2911
