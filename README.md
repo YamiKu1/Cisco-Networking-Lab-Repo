@@ -45,3 +45,165 @@ Step 4 — Save your project
 
 Create a folder on your computer:
 IT-Infrastructure-Lab
+
+Inside:
+IT-Infrastructure-Lab
+│
+└── CCNA-Network-Lab
+
+Save your Packet Tracer file as:
+small-business-network.pkt
+
+Step 5 — Assign the departments
+IT:
+VLAN 10
+192.168.10.0/24
+
+HR:
+VLAN 20
+192.168.20.0/24
+
+Sales:
+VLAN 30
+192.168.30.0/24
+
+Management:
+VLAN 40
+192.168.40.0/24
+
+For now, use:
+PC1 → IT
+PC2 → IT
+
+PC3 → HR
+PC4 → HR
+
+PC5 → Sales
+PC6 → Sales
+We'll add Management later.
+
+Step 6 — Configure the switch
+Click your switch.
+
+Go to:
+
+CLI
+
+You'll see something like:
+
+Switch>
+Enter:
+
+enable
+Then:
+
+configure terminal
+Now create the VLANs:
+
+vlan 10
+name IT
+exit
+
+vlan 20
+name HR
+exit
+
+vlan 30
+name SALES
+exit
+
+vlan 40
+name MANAGEMENT
+exit
+You've just created four VLANs.
+
+Step 7 — Assign PCs to VLANs
+
+PC1 and PC2 belong to IT.
+
+Configure:
+
+interface range fastEthernet 0/1-2
+switchport mode access
+switchport access vlan 10
+exit
+
+PC3 and PC4:
+
+interface range fastEthernet 0/3-4
+switchport mode access
+switchport access vlan 20
+exit
+
+PC5 and PC6:
+
+interface range fastEthernet 0/5-6
+switchport mode access
+switchport access vlan 30
+exit
+
+Now your switch knows which department each PC belongs to.
+
+Step 8 — Verify your VLANs
+
+Type:
+
+show vlan brief
+
+You should see something similar to:
+
+VLAN   Name          Ports
+10     IT            Fa0/1, Fa0/2
+20     HR            Fa0/3, Fa0/4
+30     SALES         Fa0/5, Fa0/6
+40     MANAGEMENT
+
+Take a screenshot.
+
+Step 9 — Configure PC IP addresses
+
+We're going to manually configure the PCs first.
+
+Click:
+
+PC1 → Desktop → IP Configuration
+
+Set:
+
+IP Address:      192.168.10.10
+Subnet Mask:     255.255.255.0
+Default Gateway: 192.168.10.1
+
+PC2:
+
+IP Address:      192.168.10.11
+Subnet Mask:     255.255.255.0
+Default Gateway: 192.168.10.1
+
+PC3:
+
+IP Address:      192.168.20.10
+Subnet Mask:     255.255.255.0
+Default Gateway: 192.168.20.1
+
+PC4:
+
+IP Address:      192.168.20.11
+Subnet Mask:     255.255.255.0
+Default Gateway: 192.168.20.1
+
+PC5:
+
+IP Address:      192.168.30.10
+Subnet Mask:     255.255.255.0
+Default Gateway: 192.168.30.1
+
+PC6:
+
+IP Address:      192.168.30.11
+Subnet Mask:     255.255.255.0
+Default Gateway: 192.168.30.1
+
+Don't worry that the gateways don't work yet.
+
+We haven't configured the router.
