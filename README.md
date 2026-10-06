@@ -39,6 +39,8 @@ Switch F0/5 → PC5
 
 Switch F0/6 → PC6
 
+Go into CLI for router and switch, use commands "enable" and "configure terminal" to change hostname to R1 for router and SW1 for switch.
+
 Step 4 — Save your project
 
 Create a folder on your computer:
