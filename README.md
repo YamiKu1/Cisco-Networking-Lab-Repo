@@ -19,3 +19,11 @@ Switch: 2960
 Step 3 — Connect everything
 
 Use Copper Straight-Through cables.
+Connect: 
+Router G0/0 to Switch G0/1
+Switch F0/1 → PC1
+Switch F0/2 → PC2
+Switch F0/3 → PC3
+Switch F0/4 → PC4
+Switch F0/5 → PC5
+Switch F0/6 → PC6
