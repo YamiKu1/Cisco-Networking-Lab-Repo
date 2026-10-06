@@ -27,3 +27,8 @@ Switch F0/3 → PC3
 Switch F0/4 → PC4
 Switch F0/5 → PC5
 Switch F0/6 → PC6
+
+Step 4 — Save your project
+
+Create a folder on your computer:
+IT-Infrastructure-Lab
