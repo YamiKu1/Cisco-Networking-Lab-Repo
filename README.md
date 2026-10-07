@@ -47,40 +47,27 @@ Create a folder on your computer:
 IT-Infrastructure-Lab
 
 Inside:
-IT-Infrastructure-Lab
-│
-└── CCNA-Network-Lab
+
+CCNA-Network-Lab
 
 Save your Packet Tracer file as:
-small-business-network.pkt
+
+CCNA-Networking-Lab.pkt
 
 Step 5 — Assign the departments
+
 IT:
-VLAN 10
-192.168.10.0/24
+
+PC1 & PC2
 
 HR:
-VLAN 20
-192.168.20.0/24
+
+PC3 & PC4
 
 Sales:
-VLAN 30
-192.168.30.0/24
 
-Management:
-VLAN 40
-192.168.40.0/24
+PC5 & PC6
 
-For now, use:
-PC1 → IT
-PC2 → IT
-
-PC3 → HR
-PC4 → HR
-
-PC5 → Sales
-PC6 → Sales
-We'll add Management later.
 
 Step 6 — Configure the switch
 Click your switch.
@@ -92,29 +79,45 @@ CLI
 You'll see something like:
 
 Switch>
+
 Enter:
 
-enable
+enable (shortcut "en")
+
 Then:
 
-configure terminal
+configure terminal (shortcut "conf t")
+
 Now create the VLANs:
 
 vlan 10
+
+then change its name:
+
 name IT
+
 exit
 
+repeat for other VLANs:
+
 vlan 20
+
 name HR
+
 exit
 
 vlan 30
+
 name SALES
+
 exit
 
 vlan 40
+
 name MANAGEMENT
+
 exit
+
 You've just created four VLANs.
 
 Step 7 — Assign PCs to VLANs
@@ -123,23 +126,32 @@ PC1 and PC2 belong to IT.
 
 Configure:
 
-interface range fastEthernet 0/1-2
-switchport mode access
-switchport access vlan 10
+interface range fastEthernet 0/1-2 (shortcut "int range f0/1 - 2)
+
+switchport mode access (shortcut "sw mode ac")
+
+switchport access vlan 10 (shortcut "sw ac vlan 10")
+
 exit
 
 PC3 and PC4:
 
-interface range fastEthernet 0/3-4
-switchport mode access
-switchport access vlan 20
+interface range fastEthernet 0/3-4 (shortcut "int range f0/3 - 4)
+
+switchport mode access (shortcut "sw mode ac")
+
+switchport access vlan 20 (shortcut "sw ac vlan 20")
+
 exit
 
 PC5 and PC6:
 
-interface range fastEthernet 0/5-6
-switchport mode access
-switchport access vlan 30
+interface range fastEthernet 0/5-6 (shortcut "int range f0/5 - 6)
+
+switchport mode access (shortcut "sw mode ac")
+
+switchport access vlan 30 (shortcut "sw ac vlan 30")
+
 exit
 
 Now your switch knows which department each PC belongs to.
@@ -148,14 +160,18 @@ Step 8 — Verify your VLANs
 
 Type:
 
-show vlan brief
+show vlan brief (shortcut "sh vlan br")
 
 You should see something similar to:
 
 VLAN   Name          Ports
+
 10     IT            Fa0/1, Fa0/2
+
 20     HR            Fa0/3, Fa0/4
+
 30     SALES         Fa0/5, Fa0/6
+
 40     MANAGEMENT
 
 Take a screenshot.
