@@ -1,9 +1,9 @@
 # Cisco-Networking-Lab-Repo
-#Step 1 — Install Cisco Packet Tracer
+# Step 1 — Install Cisco Packet Tracer
 
 Download and install Cisco Packet Tracer
 
-#Step 2 — Create the basic topology
+## Step 2 — Create the basic topology
 
 Drag these devices into the workspace:
 
