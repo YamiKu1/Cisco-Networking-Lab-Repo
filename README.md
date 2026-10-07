@@ -1,5 +1,5 @@
 # Cisco-Networking-Lab-Repo
-# Step 1 — Install Cisco Packet Tracer
+## Step 1 — Install Cisco Packet Tracer
 
 Download and install Cisco Packet Tracer
 
@@ -20,7 +20,7 @@ End devices:
 Router: 2911
 Switch: 2960
 
-#Step 3 — Connect everything
+## Step 3 — Connect everything
 
 Use Copper Straight-Through cables.
 Connect: 
@@ -41,7 +41,7 @@ Switch F0/6 → PC6
 
 Go into CLI for router and switch, use commands "enable" and "configure terminal" to change hostname to R1 for router and SW1 for switch.
 
-Step 4 — Save your project
+## Step 4 — Save your project
 
 Create a folder on your computer:
 IT-Infrastructure-Lab
@@ -54,7 +54,7 @@ Save your Packet Tracer file as:
 
 CCNA-Networking-Lab.pkt
 
-Step 5 — Assign the departments
+## Step 5 — Assign the departments
 
 IT:
 
@@ -69,7 +69,7 @@ Sales:
 PC5 & PC6
 
 
-Step 6 — Configure the switch
+## Step 6 — Configure the switch
 Click your switch.
 
 Go to:
@@ -120,7 +120,7 @@ exit
 
 You've just created four VLANs.
 
-Step 7 — Assign PCs to VLANs
+## Step 7 — Assign PCs to VLANs
 
 PC1 and PC2 belong to IT.
 
@@ -156,7 +156,7 @@ exit
 
 Now your switch knows which department each PC belongs to.
 
-Step 8 — Verify your VLANs
+## Step 8 — Verify your VLANs
 
 Type:
 
@@ -176,7 +176,7 @@ VLAN   Name          Ports
 
 Take a screenshot.
 
-Step 9 — Configure PC IP addresses
+## Step 9 — Configure PC IP addresses
 
 We're going to manually configure the PCs first.
 
