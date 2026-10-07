@@ -1,9 +1,9 @@
 # Cisco-Networking-Lab-Repo
-Step 1 — Install Cisco Packet Tracer
+#Step 1 — Install Cisco Packet Tracer
 
 Download and install Cisco Packet Tracer
 
-Step 2 — Create the basic topology
+#Step 2 — Create the basic topology
 
 Drag these devices into the workspace:
 
@@ -20,7 +20,7 @@ End devices:
 Router: 2911
 Switch: 2960
 
-Step 3 — Connect everything
+#Step 3 — Connect everything
 
 Use Copper Straight-Through cables.
 Connect: 
