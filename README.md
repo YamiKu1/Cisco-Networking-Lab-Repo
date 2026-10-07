@@ -48,7 +48,7 @@ IT-Infrastructure-Lab
 
 Inside:
 
-CCNA-Network-Lab
+Cisco-Network-Lab
 
 Save your Packet Tracer file as:
 
@@ -160,7 +160,7 @@ Step 8 — Verify your VLANs
 
 Type:
 
-show vlan brief (shortcut "sh vlan br")
+do show vlan brief (shortcut "do sh vlan br")
 
 You should see something similar to:
 
