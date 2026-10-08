@@ -178,51 +178,25 @@ Take a screenshot.
 
 ## Step 9 — Configure PC IP addresses
 
-We're going to manually configure the PCs first.
-
-Click:
-
-PC1 → Desktop → IP Configuration
-
-Set:
-
-IP Address:      192.168.10.10
-Subnet Mask:     255.255.255.0
-Default Gateway: 192.168.10.1
-
-PC2:
-
-IP Address:      192.168.10.11
-Subnet Mask:     255.255.255.0
-Default Gateway: 192.168.10.1
-
-PC3:
-
-IP Address:      192.168.20.10
-Subnet Mask:     255.255.255.0
-Default Gateway: 192.168.20.1
-
-PC4:
-
-IP Address:      192.168.20.11
-Subnet Mask:     255.255.255.0
-Default Gateway: 192.168.20.1
-
 PC5:
 
-IP Address:      192.168.30.10
-Subnet Mask:     255.255.255.0
-Default Gateway: 192.168.30.1
+Fa0/5
 
 PC6:
 
-IP Address:      192.168.30.11
-Subnet Mask:     255.255.255.0
-Default Gateway: 192.168.30.1
+Fa0/6
 
-Don't worry that the gateways don't work yet.
+Enter:
 
-We haven't configured the router.
+interface range fastEthernet 0/5-6
+switchport mode access
+switchport access vlan 30
+exit
+
+Now:
+
+PC5 → VLAN 30
+PC6 → VLAN 30
 
 ## Step 10 — Verify your VLANs
 
@@ -291,7 +265,7 @@ Mask:     255.255.255.192 (/26)
 Gateway:  192.168.0.1
 VLAN:     10
 
-Step 12 — Configure PC2
+## Step 12 — Configure PC2
 
 Click:
 
@@ -312,5 +286,7 @@ Gateway:  192.168.0.1
 VLAN:     10
 
 Notice that PC1 and PC2 are in the same subnet:
+
+
 
 192.168.0.0/26
