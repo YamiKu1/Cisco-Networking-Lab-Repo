@@ -287,6 +287,36 @@ VLAN:     10
 
 Notice that PC1 and PC2 are in the same subnet:
 
+## Step 13 — Configure PC3
 
+Now we're moving to VLAN 20.
+
+VLAN 20's network is:
+
+192.168.0.64/26
+
+The usable addresses are:
+
+192.168.0.65
+through
+192.168.0.126
+
+The first usable address will be our gateway:
+
+192.168.0.65
+
+So PC3 gets:
+
+IP Address:       192.168.0.70
+Subnet Mask:      255.255.255.192
+Default Gateway:  192.168.0.65
+
+Therefore:
+
+PC3
+IP:       192.168.0.70
+Mask:     /26
+Gateway:  192.168.0.65
+VLAN:     20
 
 192.168.0.0/26
