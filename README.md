@@ -224,7 +224,7 @@ Don't worry that the gateways don't work yet.
 
 We haven't configured the router.
 
-**Step 10 — Verify your VLANs**
+## Step 10 — Verify your VLANs
 
 On the switch:
 
@@ -246,7 +246,7 @@ VLAN Name                             Status    Ports
 
 If you see this, stop here and verify it before continuing.
 
-**Step 11 — Configure PC1's IP address**
+## Step 11 — Configure PC1's IP address
 
 Now we're configuring the actual PC, not the switch.
 
