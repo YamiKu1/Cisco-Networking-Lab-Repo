@@ -221,3 +221,103 @@ Mask:     255.255.255.192 (/26)
 Gateway:  192.168.0.1
 VLAN:     10
 
+## Step 10 — Configure PC2
+
+Click:
+
+PC2 → Desktop → IP Configuration
+
+Enter:
+
+IP Address:       192.168.0.11
+Subnet Mask:      255.255.255.192
+Default Gateway:  192.168.0.1
+
+So:
+
+PC2
+IP:       192.168.0.11
+Mask:     /26
+Gateway:  192.168.0.1
+VLAN:     10
+
+Notice that PC1 and PC2 are in the same subnet:
+
+192.168.0.0/26
+
+## Step 11 — Configure PC3
+
+Now we're moving to VLAN 20.
+
+VLAN 20's network is:
+
+192.168.0.64/26
+
+The usable addresses are:
+
+192.168.0.65
+through
+192.168.0.126
+
+The first usable address will be our gateway:
+
+192.168.0.65
+
+So PC3 gets:
+
+IP Address:       192.168.0.70
+Subnet Mask:      255.255.255.192
+Default Gateway:  192.168.0.65
+
+Therefore:
+
+PC3
+IP:       192.168.0.70
+Mask:     /26
+Gateway:  192.168.0.65
+VLAN:     20
+
+## Step 12 — Configure PC4
+
+Use:
+
+IP Address:       192.168.0.71
+Subnet Mask:      255.255.255.192
+Default Gateway:  192.168.0.65
+
+So:
+
+PC4
+IP:       192.168.0.71
+Mask:     /26
+Gateway:  192.168.0.65
+VLAN:     20
+
+## Step 13 — Configure PC5
+
+VLAN 30 is:
+
+192.168.0.128/26
+
+Usable:
+
+192.168.0.129 – 192.168.0.190
+
+Gateway:
+
+192.168.0.129
+
+PC5:
+
+IP Address:       192.168.0.140
+Subnet Mask:      255.255.255.192
+Default Gateway:  192.168.0.129
+
+
+## Step 14 — Configure PC6
+
+PC6:
+
+IP Address:       192.168.0.141
+Subnet Mask:      255.255.255.192
+Default Gateway:  192.168.0.129
