@@ -223,3 +223,94 @@ Default Gateway: 192.168.30.1
 Don't worry that the gateways don't work yet.
 
 We haven't configured the router.
+
+**Step 10 — Verify your VLANs**
+
+On the switch:
+
+end
+
+Then:
+
+show vlan brief
+
+You should see something approximately like:
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- --------------------
+1    default                          active
+10   IT                               active    Fa0/1, Fa0/2
+20   HR                               active    Fa0/3, Fa0/4
+30   SALES                            active    Fa0/5, Fa0/6
+40   MANAGEMENT                       active
+
+If you see this, stop here and verify it before continuing.
+
+**Step 11 — Configure PC1's IP address**
+
+Now we're configuring the actual PC, not the switch.
+
+Click:
+
+PC1 → Desktop → IP Configuration
+
+You'll see:
+
+IP Configuration
+
+IPv4 Address:
+Subnet Mask:
+Default Gateway:
+DNS Server:
+
+Enter:
+
+PC1
+
+IPv4 Address:
+
+192.168.0.10
+
+Subnet Mask:
+
+255.255.255.192
+
+That's /26.
+
+Default Gateway:
+
+192.168.0.1
+
+Leave DNS blank for now.
+
+So PC1 is:
+
+PC1
+IP:       192.168.0.10
+Mask:     255.255.255.192 (/26)
+Gateway:  192.168.0.1
+VLAN:     10
+
+Step 12 — Configure PC2
+
+Click:
+
+PC2 → Desktop → IP Configuration
+
+Enter:
+
+IP Address:       192.168.0.11
+Subnet Mask:      255.255.255.192
+Default Gateway:  192.168.0.1
+
+So:
+
+PC2
+IP:       192.168.0.11
+Mask:     /26
+Gateway:  192.168.0.1
+VLAN:     10
+
+Notice that PC1 and PC2 are in the same subnet:
+
+192.168.0.0/26
