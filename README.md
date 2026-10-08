@@ -321,3 +321,203 @@ PC6:
 IP Address:       192.168.0.141
 Subnet Mask:      255.255.255.192
 Default Gateway:  192.168.0.129
+
+Your PCs should now look like this
+
+PC	VLAN	IP	Mask	Gateway
+PC1	10	192.168.0.10	/26	192.168.0.1
+PC2	10	192.168.0.11	/26	192.168.0.1
+PC3	20	192.168.0.70	/26	192.168.0.65
+PC4	20	192.168.0.71	/26	192.168.0.65
+PC5	30	192.168.0.140	/26	192.168.0.129
+PC6	30	192.168.0.141	/26	192.168.0.129
+
+Important: those gateway IPs don't work yet. We haven't configured the router to use them.
+
+## Step 15 — Configure the router
+
+Now click Router → CLI.
+
+Enter:
+
+enable
+configure terminal
+
+We're going to create a separate virtual interface on the router for each VLAN.
+
+This is called router-on-a-stick.
+
+VLAN 10 interface
+
+Type:
+
+interface gigabitEthernet 0/0.10
+
+Then:
+
+encapsulation dot1Q 10
+
+Then:
+
+ip address 192.168.0.1 255.255.255.192
+
+Then:
+
+exit
+
+This means:
+
+"For VLAN 10, the router's gateway is 192.168.0.1."
+
+VLAN 20 interface
+interface gigabitEthernet 0/0.20
+encapsulation dot1Q 20
+ip address 192.168.0.65 255.255.255.192
+exit
+
+So VLAN 20's gateway is:
+
+192.168.0.65
+
+VLAN 30 interface
+interface gigabitEthernet 0/0.30
+encapsulation dot1Q 30
+ip address 192.168.0.129 255.255.255.192
+exit
+VLAN 40 interface
+
+We aren't using a Management PC yet, but configure it anyway:
+
+interface gigabitEthernet 0/0.40
+encapsulation dot1Q 40
+ip address 192.168.0.193 255.255.255.192
+exit
+
+## Step 16 — Turn on the physical router interface
+
+This part is very important.
+
+We're using:
+
+GigabitEthernet 0/0
+
+as the physical connection to the switch.
+
+Enter:
+
+interface gigabitEthernet 0/0
+no shutdown
+exit
+
+Think of it like this:
+
+Router physical interface
+        G0/0
+         |
+    ┌────┴────┐
+    |         |
+ G0/0.10   G0/0.20
+ VLAN 10    VLAN 20
+
+The physical interface carries the traffic, while the subinterfaces separate it into VLANs.
+
+## Step 17 — Configure the switch's connection to the router
+
+Now go back to the switch.
+
+Remember:
+
+Switch G0/1
+     |
+     |
+Router G0/0
+
+We need to make this a trunk.
+
+On the switch:
+
+enable
+configure terminal
+
+Then:
+
+interface gigabitEthernet 0/1
+
+Then:
+
+switchport mode trunk
+
+Then:
+
+exit
+
+Now multiple VLANs can travel across this one connection.
+
+## Step 18 — Test PC1 → Gateway
+
+Go to:
+
+PC1 → Desktop → Command Prompt
+
+Type:
+
+ping 192.168.0.1
+
+You want replies like:
+
+Reply from 192.168.0.1
+
+If that works, PC1 can reach its router gateway.
+
+## Step 19 — Test PC1 → PC2
+
+On PC1:
+
+ping 192.168.0.11
+
+This should work because:
+
+PC1
+192.168.0.10
+     |
+     ↓
+192.168.0.11
+PC2
+
+They're both in:
+
+192.168.0.0/26
+
+## Step 20 — Test PC1 → PC3
+
+Now:
+
+ping 192.168.0.70
+
+This is different.
+
+PC1:
+
+192.168.0.10/26
+
+PC3:
+
+192.168.0.70/26
+
+They are in different subnets:
+
+PC1
+192.168.0.0/26
+       |
+       ↓
+Router
+       |
+       ↓
+192.168.0.64/26
+       |
+       ↓
+PC3
+
+The router should route between them.
+
+If this works, you've successfully configured inter-VLAN routing.
