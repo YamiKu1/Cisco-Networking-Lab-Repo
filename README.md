@@ -178,50 +178,6 @@ Take a screenshot.
 
 ## Step 9 — Configure PC IP addresses
 
-PC5:
-
-Fa0/5
-
-PC6:
-
-Fa0/6
-
-Enter:
-
-interface range fastEthernet 0/5-6
-switchport mode access
-switchport access vlan 30
-exit
-
-Now:
-
-PC5 → VLAN 30
-PC6 → VLAN 30
-
-## Step 10 — Verify your VLANs
-
-On the switch:
-
-end
-
-Then:
-
-show vlan brief
-
-You should see something approximately like:
-
-VLAN Name                             Status    Ports
----- -------------------------------- --------- --------------------
-1    default                          active
-10   IT                               active    Fa0/1, Fa0/2
-20   HR                               active    Fa0/3, Fa0/4
-30   SALES                            active    Fa0/5, Fa0/6
-40   MANAGEMENT                       active
-
-If you see this, stop here and verify it before continuing.
-
-## Step 11 — Configure PC1's IP address
-
 Now we're configuring the actual PC, not the switch.
 
 Click:
@@ -265,58 +221,3 @@ Mask:     255.255.255.192 (/26)
 Gateway:  192.168.0.1
 VLAN:     10
 
-## Step 12 — Configure PC2
-
-Click:
-
-PC2 → Desktop → IP Configuration
-
-Enter:
-
-IP Address:       192.168.0.11
-Subnet Mask:      255.255.255.192
-Default Gateway:  192.168.0.1
-
-So:
-
-PC2
-IP:       192.168.0.11
-Mask:     /26
-Gateway:  192.168.0.1
-VLAN:     10
-
-Notice that PC1 and PC2 are in the same subnet:
-
-## Step 13 — Configure PC3
-
-Now we're moving to VLAN 20.
-
-VLAN 20's network is:
-
-192.168.0.64/26
-
-The usable addresses are:
-
-192.168.0.65
-through
-192.168.0.126
-
-The first usable address will be our gateway:
-
-192.168.0.65
-
-So PC3 gets:
-
-IP Address:       192.168.0.70
-Subnet Mask:      255.255.255.192
-Default Gateway:  192.168.0.65
-
-Therefore:
-
-PC3
-IP:       192.168.0.70
-Mask:     /26
-Gateway:  192.168.0.65
-VLAN:     20
-
-192.168.0.0/26
