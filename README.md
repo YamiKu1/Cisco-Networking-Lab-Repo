@@ -409,17 +409,6 @@ interface gigabitEthernet 0/0
 no shutdown
 exit
 
-Think of it like this:
-
-Router physical interface
-        G0/0
-         |
-    ┌────┴────┐
-    |         |
- G0/0.10   G0/0.20
- VLAN 10    VLAN 20
-
-The physical interface carries the traffic, while the subinterfaces separate it into VLANs.
 
 ## Step 17 — Configure the switch's connection to the router
 
@@ -427,16 +416,14 @@ Now go back to the switch.
 
 Remember:
 
-Switch G0/1
-     |
-     |
-Router G0/0
+Switch G0/1 -- Router G0/0
 
 We need to make this a trunk.
 
 On the switch:
 
 enable
+
 configure terminal
 
 Then:
