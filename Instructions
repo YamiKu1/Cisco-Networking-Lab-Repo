@@ -509,3 +509,89 @@ The router should route between them.
 
 If this works, you've successfully configured inter-VLAN routing.
 
+# CREATING VLAN 40 AND TROUBLESHOOTING
+
+## VLAN 40
+
+Similar to the steps before:
+
+Create 2 PCs, PC 7 and 8 and connect them using straight through cable to switch
+
+Configure the switch for VLAN 40:
+
+enable
+
+configure terminal
+
+vlan 40
+
+name MANAGEMENT
+
+exit
+
+interface range fastEthernet 0/7-8
+
+switchport mode access
+
+switchport access vlan 40
+
+exit
+
+do show vlan brief
+
+Now take a screenshot to make sure the VLAN has been created.
+
+Now before we actually use the correct IP addresses and such, we want to intentionally break and cause issues to try to fix them.
+
+## Incorrect IP configuration
+
+Lets intentionally make the IP of PC 7 and 8 an IP from another VLAN, like VLAN 10. I'll use 192.168.0.20 and 192.168.0.21 for PC 7 and 8 respectively. Their default gateway should be from the same VLAn so it will be 192.168.0.1. 
+
+The issue is that PC 7 and 8 are still on ports connected to VLAN 40 which will cause an issue with this traffic due to IP from VLAN 10.
+
+
+## Incorrect VLAN assignment
+## Trunk configuration failure
+## Incorrect default gateway
+## Routing/subinterface failure
+
+Correct IP for PC 7: 192.168.0.200
+Correct IP for PC 8: 192.168.0.201
+Subnet mask: 255.255.255.192
+Default Gateway: 192.168.0.193
+
+Router commands:
+
+enable
+
+show ip interface brief
+
+if g0/0.40 is already configured, it should say the IP address is 192.168.0.193
+
+if not then enter following commands:
+
+configure terminal
+
+interface gigabitEthernet 0/0.40
+
+encapsulation dot1Q 40
+
+ip address 192.168.0.193 255.255.255.192
+
+exit
+
+interface gigabitEthernet 0/0
+
+no shutdown
+
+end
+
+make sure the port is trunk:
+
+configure terminal
+
+interface gigabitEthernet 0/1
+
+switchport mode trunk
+
+end
