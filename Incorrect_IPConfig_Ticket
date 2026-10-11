@@ -1,0 +1,33 @@
+# Ticket 001 — Incorrect IP Subnet on Management PCs
+
+## Problem
+
+PC7 and PC8, connected to VLAN 40 (Management), were configured with IP addresses from VLAN 10's subnet.
+
+## Incorrect Configuration
+
+* PC7: 192.168.0.20/26
+* PC8: 192.168.0.21/26
+* Default gateway: 192.168.0.1
+
+## Symptoms
+
+* PC7 could communicate with PC8 because both devices were in VLAN 40 and shared the same IP subnet.
+* PC7 could not reach the VLAN 10 gateway at 192.168.0.1.
+* PC7 could not reach the VLAN 40 gateway at 192.168.0.193 with the incorrect default gateway.
+
+## Root Cause
+
+The PCs' IP addresses and default gateway did not match the subnet assigned to VLAN 40. Their switch ports remained in VLAN 40, so their ARP broadcasts could not reach the router's VLAN 10 interface.
+
+## Resolution
+
+Restored PC7 to 192.168.0.200/26 and PC8 to 192.168.0.201/26. Set both default gateways to 192.168.0.193.
+
+## Verification
+
+Tested connectivity to the VLAN 40 gateway, between PC7 and PC8, and from PC7 to a host in VLAN 10.
+
+## Lesson Learned
+
+VLAN membership is determined by the switch configuration, while IP addressing must match the Layer 3 subnet used by that VLAN.
