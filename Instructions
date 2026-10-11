@@ -563,7 +563,7 @@ Failed, because the traffic expected VLAN 40 but PC are configured as VLAN 10 IP
 
 Failed, PC 7 could not reach it since the configured default gateway was wrong
 
-Check the Incorrect_IPConfig_Ticket for a created ticket.
+Check the Incorrect_IPConfig_Ticket for a created ticket and take a screenshot of the ping results.
 
 ## Incorrect VLAN assignment
 
