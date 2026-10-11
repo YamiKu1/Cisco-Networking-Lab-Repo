@@ -545,12 +545,31 @@ Now before we actually use the correct IP addresses and such, we want to intenti
 
 ## Incorrect IP configuration
 
-Lets intentionally make the IP of PC 7 and 8 an IP from another VLAN, like VLAN 10. I'll use 192.168.0.20 and 192.168.0.21 for PC 7 and 8 respectively. Their default gateway should be from the same VLAn so it will be 192.168.0.1. 
+Lets intentionally make the IP of PC 7 and 8 an IP from another VLAN, like VLAN 10. I'll use 192.168.0.20 and 192.168.0.21 for PC 7 and 8 respectively. Their default gateway should be from the same VLAN so it will be 192.168.0.1. 
 
 The issue is that PC 7 and 8 are still on ports connected to VLAN 40 which will cause an issue with this traffic due to IP from VLAN 10.
 
+Try 3 pings:
+
+1. Ping from PC 7 to PC 8, ping 192.168.0.21
+
+Success because they are in same subnet and same VLAN
+
+2. Ping from PC 7 to 192.168.0.1, the configured default gateway from PC config
+
+Failed, because the traffic expected VLAN 40 but PC are configured as VLAN 10 IP
+
+3. Ping from PC 7 to 192.168.0.193, the correct gateway that was supposed to be configured
+
+Failed, PC 7 could not reach it since the configured default gateway was wrong
+
+Check the Incorrect_IPConfig_Ticket for a created ticket.
 
 ## Incorrect VLAN assignment
+
+
+
+
 ## Trunk configuration failure
 ## Incorrect default gateway
 ## Routing/subinterface failure
