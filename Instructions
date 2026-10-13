@@ -567,10 +567,55 @@ Check the Incorrect_IPConfig_Ticket for a created ticket and take a screenshot o
 
 ## Incorrect VLAN assignment
 
+Go into the switch CLI and enter the following commands:
 
+enable
 
+configure terminal
+
+interface range fastEthernet 0/7-8
+
+switchport access vlan 10
+
+end
+
+show vlan brief
+
+It should show f0/7 and f0/8 in VLAN 10, this made the ports think that f0/7 and f0/8 are all VLAN 10 traffic. Screenshot this to document incorrect VLAN.
+
+Now lets do 3 pings again.
+
+1. Ping from PC 7 to PC 8, ping 192.168.0.201
+
+Success, they are in the same subnet and they communicate at Layer 2 directly
+
+2. Ping the default gateway, ping 192.168.0.193
+
+Failed because PC 7 and 8 now considered in VLAN 10, cannot ping VLAN 40 gateway
+
+3. Ping VLAN 10 gateway, ping 192.168.0.1
+
+Failed because the IP of PC 7 and 8 are in a different subnet from VLAN 10 default gateway.
+
+Check the Incorrect_VLAN_Ticket and take a screenshot of ping results.
+
+To fix this go back to switch CLI and enter:
+
+enable
+
+configure terminal
+
+interface range fastEthernet 0/7-8
+
+switchport access vlan 40
+
+end
 
 ## Trunk configuration failure
+
+
+
+
 ## Incorrect default gateway
 ## Routing/subinterface failure
 
