@@ -1,0 +1,45 @@
+Incorrect VLAN Assignment
+
+Problem
+
+PC7 and PC8, intended for the Management department, were accidentally assigned to VLAN 10 instead of VLAN 40.
+
+Expected Configuration
+
+Switch port Fa0/7: VLAN 40
+
+Switch port Fa0/8: VLAN 40
+
+PC7: 192.168.0.200/26
+
+PC8: 192.168.0.201/26
+
+Default gateway: 192.168.0.193
+
+Symptoms
+
+PC7 could communicate with PC8 while both were assigned to VLAN 10.
+
+PC7 could not reach the intended Management gateway at 192.168.0.193.
+
+PC7 could not reach the IT gateway at 192.168.0.1 because its IP address and default gateway were configured for the Management subnet.
+
+Diagnosis
+
+Used show vlan brief to inspect switch port assignments and identified that Fa0/7 and Fa0/8 belonged to VLAN 10 instead of VLAN 40.
+
+Root Cause
+
+Incorrect access VLAN configuration on the switch ports.
+
+Resolution
+
+Reassigned Fa0/7 and Fa0/8 to VLAN 40 using switchport access vlan 40.
+
+Verification
+
+Confirmed the correct VLAN membership with show vlan brief. Tested connectivity to the Management gateway, PC8, and a host in the IT VLAN.
+
+Lesson Learned
+
+Switch port VLAN assignment determines a device's Layer 2 broadcast domain. A correct IP address alone does not place a device in the correct VLAN. VLAN membership and IP subnet configuration must both be correct.
