@@ -1,0 +1,34 @@
+# Ticket 003: Trunk Configuration Failure
+
+## Issue
+Devices in different VLANs could not reach their default gateways or communicate with devices in other VLANs.
+
+## Symptoms
+- Devices in the same VLAN could still communicate.
+- Pings to default gateways failed.
+- Communication between different VLANs failed.
+
+## Investigation
+1. Checked connectivity using `ping`.
+2. Ran `show interfaces trunk` on the switch.
+3. Inspected the router-facing switch port using `show interfaces gigabitEthernet 0/1 switchport`.
+4. Found that GigabitEthernet0/1 was configured as an access port instead of a trunk.
+
+## Root Cause
+The switch port connecting to the router was incorrectly configured with `switchport mode access`. This prevented the link from carrying the VLAN-tagged traffic expected by the router's subinterfaces.
+
+## Resolution
+Restored trunk mode on the switch port:
+
+    configure terminal
+    interface gigabitEthernet 0/1
+    switchport mode trunk
+    end
+
+## Verification
+- Confirmed the switch port appeared in `show interfaces trunk`.
+- Retested connectivity to the default gateway.
+- Retested communication between devices in different VLANs.
+
+## Lesson Learned
+Router-on-a-stick configurations require a correctly configured trunk between the switch and router. Verifying the switch port's operational mode helps isolate trunk-related failures before changing other network settings.
