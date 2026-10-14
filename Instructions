@@ -625,6 +625,8 @@ interface gigabitEthernet 0/1
 
 switchport mode access
 
+end
+
 Go to PC 1 and ping:
 
 1. ping 192.168.0.11 PC 2
@@ -642,6 +644,8 @@ Failed because inter-VLAN traffic needs the router
 Take screenshot of pings
 
 Enter switch CLI
+
+enable
 
 show interfaces trunk
 
