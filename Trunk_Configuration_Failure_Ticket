@@ -1,4 +1,4 @@
-# Ticket 003: Trunk Configuration Failure
+# Ticket 003 — Trunk Configuration Failure
 
 ## Issue
 Devices in different VLANs could not reach their default gateways or communicate with devices in other VLANs.
