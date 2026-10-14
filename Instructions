@@ -663,8 +663,6 @@ switchport mode trunk
 
 do show interfaces trunk
 
-do show running-config
-
 Take screenshot.
 
 Check Trunk_Configuration_Failure_Ticket for more information.
