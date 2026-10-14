@@ -643,8 +643,6 @@ Take screenshot of pings
 
 Enter switch CLI
 
-enable
-
 show interfaces trunk
 
 show interfaces gigabitEthernet 0/1 switchport
