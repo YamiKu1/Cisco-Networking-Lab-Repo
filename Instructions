@@ -613,8 +613,59 @@ end
 
 ## Trunk configuration failure
 
+The path from PC to router is connected by two connections, PC to switch, switch to router. We will break the connection from switch to router.
 
+Open CLI on the switch and enter:
 
+enable
+
+configure terminal
+
+interface gigabitEthernet 0/1
+
+switchport mode access
+
+Go to PC 1 and ping:
+
+1. ping 192.168.0.11 PC 2
+
+Success because they are on same VLAN
+
+2. ping 192.168.0.1 Default gateway
+
+Failed because router VLAN 10 traffic can't cross the broken trunk correctly
+
+3. ping 192.168.0.70 PC 3
+
+Failed because inter-VLAN traffic needs the router
+
+Take screenshot of pings
+
+Enter switch CLI
+
+enable
+
+show interfaces trunk
+
+show interfaces gigabitEthernet 0/1 switchport
+
+Take screenshot of incorrect configuration
+
+Enter following commands to fix:
+
+configure terminal
+
+interface gigabitEthernet 0/1
+
+switchport mode trunk
+
+show interfaces trunk
+
+show running-config
+
+Take screenshot.
+
+Check Trunk_Configuration_Failure_Ticket for more information.
 
 ## Incorrect default gateway
 ## Routing/subinterface failure
