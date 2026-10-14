@@ -661,9 +661,9 @@ interface gigabitEthernet 0/1
 
 switchport mode trunk
 
-show interfaces trunk
+do show interfaces trunk
 
-show running-config
+do show running-config
 
 Take screenshot.
 
