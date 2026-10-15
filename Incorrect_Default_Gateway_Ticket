@@ -1,0 +1,39 @@
+# Ticket 009 - Incorrect Default Gateway
+
+## Issue
+
+PC1 could communicate with devices on its local subnet but could not reliably communicate with devices in other subnets.
+
+## Symptoms
+
+PC1 could ping PC2 in the same subnet.
+
+PC1 could reach its correct router interface.
+
+PC1 could not reach PC3 in VLAN 20. (Because of packet tracer, it was sitll able to reach PC3 but in a regualr network it would not be able to)
+
+## Investigation
+
+Tested connectivity using ping.
+
+Confirmed PC1's IP address and subnet mask.
+
+Checked PC1's configured default gateway in Desktop → IP Configuration.
+
+Found that the gateway was set to 192.168.0.65 instead of 192.168.0.1.
+
+## Root Cause
+
+PC1 was configured with the default gateway for VLAN 20 rather than the router interface for VLAN 10.
+
+## Resolution
+
+Changed PC1's default gateway to 192.168.0.1, leaving its IP address and subnet mask unchanged.
+
+## Verification
+
+Retested connectivity to PC2, PC1's correct default gateway, and PC3. Connectivity was restored.
+
+## Lesson Learned
+
+A PC uses its default gateway to reach destinations outside its local subnet. An incorrect gateway can prevent off-subnet communication even when the PC's IP address, subnet mask, cable, and local VLAN are correct.
