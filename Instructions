@@ -685,7 +685,7 @@ Success because it is still on PC 1's local subnet, and they are in same VLAN
 
 ping 192.168.0.70 PC 3
 
-Failed because to reach different VLAN it has to be routed
+Failed because to reach different VLAN it has to be routed (On Cisco Packet tracer it still works but it should fail on regular network device)
 
 Take a screenshot
 
