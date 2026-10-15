@@ -668,6 +668,30 @@ Take screenshot.
 Check Trunk_Configuration_Failure_Ticket for more information.
 
 ## Incorrect default gateway
+
+On PC 1 we will intentionally swap the default gateway to see what happens.
+
+Change the default gateway to 192.168.0.65, which is VLAN 20's default gateway.
+
+3 pings:
+
+ping 192.168.0.11 PC 2
+
+Success because they are in same subnet, not need for default gateway
+
+ping 192.168.0.1 original default gateway
+
+Success because it is still on PC 1's local subnet, and they are in same VLAN
+
+ping 192.168.0.70 PC 3
+
+Failed because to reach different VLAN it has to be routed
+
+Take a screenshot
+
+Check Incorrect_Default_Gateway_Ticket for more details.
+
+
 ## Routing/subinterface failure
 
 Correct IP for PC 7: 192.168.0.200
