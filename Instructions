@@ -694,6 +694,68 @@ Check Incorrect_Default_Gateway_Ticket for more details.
 
 ## Routing/subinterface failure
 
+We will be breaking a subinterface on the router, lets break VLAN 20.
+
+Open Router CLI and enter:
+
+enable
+
+configure terminal
+
+interface gigabitEthernet 0/0.20
+
+encapsulation dot1Q 99
+
+end
+
+Take screenshot
+
+So what this did is change the VLAN it used from 20 to 99, 99 is an unused VLAN and we didn't even create it so it should create errors.
+
+Go to PC 3 and ping 2 times:
+
+ping 192.168.0.65, default gateway
+
+Fails as there is no VLAN 20 on the router subinterface
+
+ping 192.168.0.71, PC 4
+
+Success as they are in same subnet
+
+Take screenshot
+
+Now go to PC 1 and ping 2 times
+
+ping 192.168.0.11, PC 2
+
+Success as they are in same subnet and this would not affect them
+
+ping 192.168.0.70, PC 3
+
+Failes as the router is unable to reach them
+
+Take screenshot
+
+To find the source of the issue you can run the following commands on the router
+
+show ip interface brief
+
+show running-config
+
+The running config would should all the commands that have been entered including the vlan 99 error
+
+Restore it by entering the following commands
+
+configure terminal
+
+interface gigabitEthernet 0/0.20
+
+encapsulation dot1Q 20
+
+end
+
+Check Routing_Subinterface_Failure_Ticket for more information
+
 Correct IP for PC 7: 192.168.0.200
 Correct IP for PC 8: 192.168.0.201
 Subnet mask: 255.255.255.192
