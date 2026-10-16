@@ -1,0 +1,33 @@
+# Ticket 010 - Router Subinterface Failure
+
+## Issue
+Devices in VLAN 20 could communicate locally but could not reach their default gateway or communicate with other VLANs.
+
+## Symptoms
+- PC3 could not ping its default gateway, `192.168.0.65`.
+- PC3 could communicate with PC4 in the same VLAN.
+- Communication between VLAN 20 and other VLANs failed.
+- Other VLANs continued to operate normally.
+
+## Investigation
+1. Tested connectivity using `ping`.
+2. Checked router interface status with `show ip interface brief`.
+3. Inspected the router configuration using `show running-config`.
+4. Found that `G0/0.20` used `encapsulation dot1Q 99` instead of `encapsulation dot1Q 20`.
+
+## Root Cause
+The router subinterface was configured to expect VLAN 99 traffic instead of VLAN 20 traffic.
+
+## Resolution
+Restored the correct VLAN encapsulation:
+
+    configure terminal
+    interface gigabitEthernet 0/0.20
+    encapsulation dot1Q 20
+    end
+
+## Verification
+Retested PC3's default gateway, connectivity to PC4, and communication with another VLAN. Connectivity was restored.
+
+## Lesson Learned
+Router-on-a-stick requires the router subinterface's 802.1Q VLAN ID to match the VLAN tag used by the switch. A subinterface can have the correct IP address and still fail to route traffic if its VLAN encapsulation is incorrect.
